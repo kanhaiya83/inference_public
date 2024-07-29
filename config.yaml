@@ -1,0 +1,233 @@
+# This file was generated using the `serve build` command on Ray v2.32.0.
+
+proxy_location: EveryNode
+
+http_options:
+
+  host: 0.0.0.0
+
+  port: 8000
+
+grpc_options:
+
+  port: 9000
+
+  grpc_servicer_functions: []
+
+logging_config:
+
+  encoding: TEXT
+
+  log_level: INFO
+
+  logs_dir: null
+
+  enable_access_log: true
+
+applications:
+
+- name: meta-llama_Meta-Llama-3-8B-Instruct
+
+  route_prefix: /generate/meta-llama/Meta-Llama-3-8B-Instruct
+
+  import_path: applications.LLM:app_builder
+
+  runtime_env: {}
+
+  args:
+    model_id: meta-llama/Meta-Llama-3-8B-Instruct
+    route_prefix: /generate/meta-llama/Meta-Llama-3-8B-Instruct
+
+  deployments:
+
+  - name: LLMApplication
+    autoscaling_config:
+      min_replicas: 1
+      initial_replicas: null
+      max_replicas: 1
+      target_num_ongoing_requests_per_replica: 2.0
+      target_ongoing_requests: null
+      metrics_interval_s: 10.0
+      look_back_period_s: 30.0
+      smoothing_factor: 1.0
+      upscale_smoothing_factor: null
+      downscale_smoothing_factor: null
+      upscaling_factor: null
+      downscaling_factor: null
+      downscale_delay_s: 600.0
+      upscale_delay_s: 30.0
+    ray_actor_options:
+      num_cpus: 6.0
+      num_gpus: 1.0
+
+  - name: APIIngress
+    num_replicas: 1
+
+
+
+
+
+
+- name: meta-llama_Meta-Llama-Guard-2-8B
+
+  route_prefix: /generate/meta-llama/Meta-Llama-Guard-2-8B
+
+  import_path: applications.LLM:app_builder
+
+  runtime_env: {}
+
+  args:
+    model_id: meta-llama/Meta-Llama-Guard-2-8B
+    route_prefix: /generate/meta-llama/Meta-Llama-Guard-2-8B
+
+  deployments:
+
+  - name: LLMApplication
+    autoscaling_config:
+      min_replicas: 1
+      initial_replicas: null
+      max_replicas: 1
+      target_num_ongoing_requests_per_replica: 2.0
+      target_ongoing_requests: null
+      metrics_interval_s: 10.0
+      look_back_period_s: 30.0
+      smoothing_factor: 1.0
+      upscale_smoothing_factor: null
+      downscale_smoothing_factor: null
+      upscaling_factor: null
+      downscaling_factor: null
+      downscale_delay_s: 600.0
+      upscale_delay_s: 30.0
+    ray_actor_options:
+      num_cpus: 6.0
+      num_gpus: 1.0
+
+  - name: APIIngress
+    num_replicas: 1
+
+
+
+
+- name: google_gemma-2b-it
+
+  route_prefix: /generate/google/gemma-2b-it
+
+  import_path: applications.LLM:app_builder
+
+  runtime_env: {}
+
+  args:
+    model_id: google/gemma-2b-it
+    route_prefix: /generate/google/gemma-2b-it
+
+  deployments:
+
+  - name: LLMApplication
+    autoscaling_config:
+      min_replicas: 1
+      initial_replicas: null
+      max_replicas: 1
+      target_num_ongoing_requests_per_replica: 2.0
+      target_ongoing_requests: null
+      metrics_interval_s: 10.0
+      look_back_period_s: 30.0
+      smoothing_factor: 1.0
+      upscale_smoothing_factor: null
+      downscale_smoothing_factor: null
+      upscaling_factor: null
+      downscaling_factor: null
+      downscale_delay_s: 600.0
+      upscale_delay_s: 30.0
+    ray_actor_options:
+      num_cpus: 6.0
+      num_gpus: 1.0
+
+  - name: APIIngress
+    num_replicas: 1
+
+
+
+
+
+
+
+- name: stabilityai_stable-diffusion-xl-base-1.0
+
+  route_prefix: /generate/stabilityai/stable-diffusion-xl-base-1.0
+
+  import_path: applications.stable_diffusion:app_builder
+
+  runtime_env: {}
+
+  args:
+    model_id: stabilityai/stable-diffusion-xl-base-1.0
+    route_prefix: /generate/stabilityai/stable-diffusion-xl-base-1.0
+
+  deployments:
+
+  - name: SDApplication
+    autoscaling_config:
+      min_replicas: 1
+      initial_replicas: null
+      max_replicas: 1
+      target_num_ongoing_requests_per_replica: 2.0
+      target_ongoing_requests: null
+      metrics_interval_s: 10.0
+      look_back_period_s: 30.0
+      smoothing_factor: 1.0
+      upscale_smoothing_factor: null
+      downscale_smoothing_factor: null
+      upscaling_factor: null
+      downscaling_factor: null
+      downscale_delay_s: 600.0
+      upscale_delay_s: 30.0
+    ray_actor_options:
+      num_cpus: 6.0
+      num_gpus: 0.5
+
+  - name: APIIngress
+    num_replicas: 1
+
+
+
+
+
+
+
+
+- name: bark_suno
+
+  route_prefix: /generate/bark/suno
+
+  import_path: applications.suno:app_builder
+
+  runtime_env: {}
+
+  args:
+    model_id: bark/suno
+    route_prefix: /generate/bark/suno
+
+  deployments:
+
+  - name: SunoApplication
+    autoscaling_config:
+      min_replicas: 1
+      initial_replicas: null
+      max_replicas: 1
+      target_num_ongoing_requests_per_replica: 2.0
+      target_ongoing_requests: null
+      metrics_interval_s: 10.0
+      look_back_period_s: 30.0
+      smoothing_factor: 1.0
+      upscale_smoothing_factor: null
+      downscale_smoothing_factor: null
+      upscaling_factor: null
+      downscaling_factor: null
+      downscale_delay_s: 600.0
+      upscale_delay_s: 30.0
+    ray_actor_options:
+      num_cpus: 6.0
+      num_gpus: 0.5
+
+  - name: APIIngress
+    num_replicas: 1
