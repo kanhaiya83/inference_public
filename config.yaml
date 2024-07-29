@@ -30,9 +30,15 @@ applications:
 
   route_prefix: /generate/meta-llama/Meta-Llama-3-8B-Instruct
 
-  import_path: applications.LLM:app_builder
+  import_path: LLM:app_builder
 
-  runtime_env: {}
+  
+  runtime_env:
+      working_dir: "https://github.com/kanhaiya83/inference_public/archive/refs/heads/main.zip"
+      pip:
+        - torch
+        - transformers
+        - vllm
 
   args:
     model_id: meta-llama/Meta-Llama-3-8B-Instruct

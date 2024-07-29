@@ -6,7 +6,7 @@ import torch
 from ray import serve
 from ray.serve.handle import DeploymentHandle
 from ray.serve import Application
-
+import os
 from typing import Dict
 
 from vllm import LLM,SamplingParams
@@ -82,6 +82,7 @@ class APIIngress:
 )
 class LLMApplication:
     def __init__(self,model_id:str):
+        os.environ["HF_TOKEN"]="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"
         print("n\n","model_id",model_id,"\n\n")
         self.model = LLM(model=model_id)
     def generate(self, body:RequestBody):
